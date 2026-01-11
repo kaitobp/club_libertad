@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Libertad | Pasión por el Voley</title>
+    <meta name="description"
+        content="Únete al Club Libertad. Partidos de voley todos los lunes y viernes de 7pm a 9pm. Vive la competencia y el compañerismo.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- AOS CSS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="Logo Club Libertad" class="nav-logo me-2">
+                <span class="fw-bold">CLUB LIBERTAD</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto underline-nav">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#horarios">Horarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fechas">Fechas y Equipos</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-light ms-lg-3 px-4 rounded-pill"
+                            href="#contacto">Únete</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section d-flex align-items-center">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/portada.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container position-relative text-center text-white" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="display-1 fw-extrabold mb-3">PASIÓN POR EL <span class="text-accent">VOLEY</span></h1>
+            <p class="lead mb-5 fs-4">Club Libertad: Donde cada punto cuenta. Únete a nuestra comunidad en la cancha.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#fechas" class="btn btn-primary btn-lg px-5 rounded-pill shadow-lg">Ver Próximas Fechas</a>
+                <a href="#horarios" class="btn btn-glass btn-lg px-5 rounded-pill">Saber Más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="horarios" class="py-5 section-dark">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-5 fw-bold mb-4">Nuestras Pichangas</h2>
+                    <p class="fs-5 text-secondary">En Club Libertad fomentamos el deporte y la amistad. Nos reunimos dos
+                        veces por semana para disfrutar del mejor nivel de voley amateur.</p>
+                    <div class="training-info-grid mt-5">
+                        <div class="training-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="card-icon">
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <div class="card-details">
+                                <span class="card-label">Cuándo jugamos</span>
+                                <h4 class="card-value">Lunes y Viernes</h4>
+                            </div>
+                        </div>
+
+                        <div class="training-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card-icon">
+                                <i class="bi bi-alarm-fill"></i>
+                            </div>
+                            <div class="card-details">
+                                <span class="card-label">En este horario</span>
+                                <h4 class="card-value">7:00 PM - 9:00 PM</h4>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.app.goo.gl/AALArPr89RN2digc8" target="_blank"
+                            class="training-card location-link" data-aos="fade-up" data-aos-delay="300">
+                            <div class="card-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div class="card-details">
+                                <span class="card-label">Nuestra casa</span>
+                                <h4 class="card-value">La Bombonera <i
+                                        class="bi bi-arrow-up-right-circle ms-1 small opacity-50"></i></h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="zoom-in">
+                    <div class="jersey-carousel-wrapper" onclick="toggleJersey()" style="cursor: pointer;">
+                        <div class="jersey-carousel-inner">
+                            <div class="jersey-item active" id="jersey-1">
+                                <img src="assets/jersey_primary.jpg" alt="Camiseta Local"
+                                    class="img-fluid rounded-4 shadow-lg">
+                                <span class="jersey-badge">Principal</span>
+                            </div>
+                            <div class="jersey-item" id="jersey-2">
+                                <img src="assets/jersey_secondary.jpg" alt="Camiseta Secundaria"
+                                    class="img-fluid rounded-4 shadow-lg">
+                                <span class="jersey-badge secundario">Alterna</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 text-white text-opacity-50 small">Haz click en la camiseta para alternar
+                        uniforme</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dates and Teams Section -->
+    <section id="fechas" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold text-dark">Partidos y Equipos</h2>
+                <p class="text-muted">Consulta los participantes y las formaciones de cada encuentro.</p>
+            </div>
+
+            <!-- Custom Tabs -->
+            <ul class="nav nav-pills mb-5 justify-content-center custom-tabs" id="pills-tab" role="tablist"
+                data-aos="fade-up">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-pill px-4" id="pills-proximas-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-proximas" type="button" role="tab">Próximas Fechas</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4" id="pills-pasadas-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-pasadas" type="button" role="tab">Fechas Pasadas</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent" data-aos="fade-up">
+                <!-- Proximas Fechas -->
+                <div class="tab-pane fade show active" id="pills-proximas" role="tabpanel">
+                    <div class="row g-4" id="next-dates-container">
+                        <!-- Dynamic content here -->
+                    </div>
+                </div>
+                <!-- Fechas Pasadas -->
+                <div class="tab-pane fade" id="pills-pasadas" role="tabpanel">
+                    <div class="row g-4" id="past-dates-container">
+                        <!-- Dynamic content here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Team Details -->
+    <div class="modal fade" id="teamModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content glass-modal text-white">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Detalles del Encuentro</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" id="modalBody">
+                    <!-- Dynamic team comparison -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthdays Section -->
+    <section id="cumpleanos" class="py-5 bg-light overflow-hidden">
+        <div class="container py-5">
+            <div class="row align-items-center mb-4">
+                <div class="col-lg-5 text-center text-lg-start" data-aos="fade-right">
+                    <h6 class="text-accent fw-bold text-uppercase letter-spacing-2 mb-3">Celebraciones</h6>
+                    <h2 class="display-4 fw-extrabold text-navy mb-4">Próximos Cumpleaños</h2>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="nav nav-pills justify-content-center justify-content-lg-end custom-tabs birthday-tabs"
+                        id="bday-tabs" role="tablist" data-aos="fade-left">
+                        <li class="nav-item">
+                            <button class="nav-link active rounded-pill px-4" id="this-month-tab" data-bs-toggle="pill"
+                                data-bs-target="#this-month-content" type="button">Este Mes</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-pill px-4" id="next-month-tab" data-bs-toggle="pill"
+                                data-bs-target="#next-month-content" type="button">Próximo Mes</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content mt-4" data-aos="fade-up">
+                <div class="tab-pane fade show active" id="this-month-content" role="tabpanel">
+                    <div class="birthday-slider d-flex gap-4" id="birthday-container-this">
+                        <!-- Dynamic This Month -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="next-month-content" role="tabpanel">
+                    <div class="birthday-slider d-flex gap-4" id="birthday-container-next">
+                        <!-- Dynamic Next Month -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contacto" class="py-5 section-dark text-white">
+        <div class="container py-5 text-center" data-aos="zoom-in">
+            <h2 class="display-4 fw-bold mb-4">¿Listo para saltar a la cancha?</h2>
+            <p class="fs-5 mb-5 opacity-75">Forma parte de la familia del Club Libertad. ¡Te esperamos!</p>
+            <a href="#" class="btn btn-primary btn-xl px-5 py-3 rounded-pill fw-bold">Contactar por WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-black text-center text-white-50">
+        <div class="container">
+            <img src="assets/logo.png" alt="Logo" class="footer-logo mb-3">
+            <p class="mb-0">&copy; 2026 Club Libertad Voley. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
