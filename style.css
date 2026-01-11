@@ -589,17 +589,20 @@ body {
         padding-right: 20px;
     }
 
-    /* Alineación de Navbar en móvil */
+    /* Alineación de Navbar en móvil (Centrado) */
     .navbar-collapse .nav-link {
-        text-align: left !important;
+        text-align: center !important;
         margin: 10px 0 !important;
+    }
+
+    .navbar-nav {
+        padding: 20px 0;
     }
 
     #navbarNav .btn {
         text-align: center !important;
-        margin-left: 0 !important;
-        margin-top: 10px;
-        display: inline-block;
+        margin: 10px auto !important;
+        display: block;
         width: fit-content;
     }
 }
