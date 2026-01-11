@@ -117,6 +117,18 @@ body {
         font-size: 1.1rem !important;
         margin-bottom: 2rem !important;
     }
+
+    .hero-section .btn-lg {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+        width: 100%;
+        /* Botones uno sobre otro en móviles */
+    }
+
+    .hero-section .d-flex {
+        flex-direction: column;
+        padding: 0 20px;
+    }
 }
 
 .text-accent {
@@ -575,6 +587,20 @@ body {
     .container {
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    /* Alineación de Navbar en móvil */
+    .navbar-collapse .nav-link {
+        text-align: left !important;
+        margin: 10px 0 !important;
+    }
+
+    #navbarNav .btn {
+        text-align: center !important;
+        margin-left: 0 !important;
+        margin-top: 10px;
+        display: inline-block;
+        width: fit-content;
     }
 }
 
