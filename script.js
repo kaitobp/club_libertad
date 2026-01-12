@@ -5,7 +5,7 @@ const matchData = {
     proximas: [
         {
             id: 1,
-            fecha: "Lunes 12 Ene",
+            fecha: "Lunes 12 Enero",
             hora: "7:00 PM",
             lugar: "Cancha Principal",
             equipoA: {
@@ -19,7 +19,7 @@ const matchData = {
         },
         {
             id: 2,
-            fecha: "Viernes 16 Ene",
+            fecha: "Viernes 16 Enero",
             hora: "7:00 PM",
             lugar: "Cancha Principal",
             equipoA: {
@@ -35,7 +35,7 @@ const matchData = {
     pasadas: [
         {
             id: 101,
-            fecha: "Viernes 09 Ene",
+            fecha: "Viernes 09 Enero",
             resultado: "2 - 1",
             sets: ["25-22", "19-25", "15-12"],
             equipoA: {
@@ -53,15 +53,15 @@ const matchData = {
 // Birthday Data
 const birthdayData = {
     thisMonth: [
-        { nombre: "Carlos Ruiz", fecha: "12 Ene", emoji: "🏐" },
-        { nombre: "Mario G.", fecha: "15 Ene", emoji: "👕" },
-        { nombre: "Juan Perez", fecha: "22 Ene", emoji: "🔥" },
-        { nombre: "Andre S.", fecha: "28 Ene", emoji: "💪" }
+        { nombre: "Carlos Ruiz", fecha: "12 Enero", emoji: "🏐" },
+        { nombre: "Mario G.", fecha: "15 Enero", emoji: "👕" },
+        { nombre: "Juan Perez", fecha: "22 Enero", emoji: "🔥" },
+        { nombre: "Andre S.", fecha: "28 Enero", emoji: "💪" }
     ],
     nextMonth: [
-        { nombre: "Luis P.", fecha: "05 Feb", emoji: "👟" },
-        { nombre: "Santi M.", fecha: "14 Feb", emoji: "❤️" },
-        { nombre: "Alex B.", fecha: "21 Feb", emoji: "⚡" }
+        { nombre: "Luis P.", fecha: "05 Febrero", emoji: "👟" },
+        { nombre: "Santi M.", fecha: "14 Febrero", emoji: "❤️" },
+        { nombre: "Alex B.", fecha: "21 Febrero", emoji: "⚡" }
     ]
 };
 
@@ -70,7 +70,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     renderMatches();
     renderBirthdays();
+    initHeroVideo();
 });
+
+// Force Video Playback for Mobile/Windows
+function initHeroVideo() {
+    const video = document.getElementById('heroVideo');
+    if (video) {
+        // Double ensure it's muted (some browsers require this via JS)
+        video.muted = true;
+
+        // Attempt to play
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Autoplay started!
+                console.log("Video playing automatically");
+            }).catch(error => {
+                // Autoplay was prevented
+                console.log("Autoplay prevented, waiting for interaction");
+                // We can add a one-time listener to the body to play on first touch/click
+                document.body.addEventListener('click', () => {
+                    video.play();
+                }, { once: true });
+            });
+        }
+    }
+}
 
 // Render Birthdays
 function renderBirthdays() {
@@ -152,17 +179,15 @@ function createMatchCard(match, type) {
                             <p class="text-muted small">Los equipos se definirán en la cancha</p>
                         </div>
                     ` : `
-                        <div class="row align-items-center mb-4">
-                            <div class="col-5">
-                                <div class="team-badge">E1</div>
-                                <h6 class="team-name">Equipo 1</h6>
+                        <div class="py-4 match-past-score-container">
+                            <h6 class="fw-bold mb-1 text-uppercase letter-spacing-1 opacity-50">Score Final</h6>
+                            <div class="match-score-display">
+                                ${match.resultado}
                             </div>
-                            <div class="col-2">
-                                <div class="vs-badge fw-bold">${match.resultado}</div>
-                            </div>
-                            <div class="col-5">
-                                <div class="team-badge">E2</div>
-                                <h6 class="team-name">Equipo 2</h6>
+                            <div class="d-flex justify-content-center gap-3 mt-2 flex-wrap">
+                                <span class="badge bg-light text-dark border fw-medium">Equipo 1</span>
+                                <span class="text-muted fw-bold">vs</span>
+                                <span class="badge bg-light text-dark border fw-medium">Equipo 2</span>
                             </div>
                         </div>
                     `}
@@ -187,52 +212,47 @@ window.showDetails = function (id, type) {
     const modalBody = document.getElementById('modalBody');
 
     const isPast = type === 'pasada';
-    if (modalTitle) modalTitle.innerText = isPast ? `Resumen - ${match.fecha}` : `Inscritos - ${match.fecha}`;
+    if (modalTitle) modalTitle.innerText = isPast ? `${match.fecha}` : `Inscritos — ${match.fecha}`;
 
     if (modalBody) {
         if (isPast) {
             modalBody.innerHTML = `
-                <div class="row g-4 mb-2">
+                <div class="result-summary-banner mb-4 p-3 rounded-4 text-center">
+                    <span class="text-uppercase letter-spacing-2 small opacity-75 d-block mb-1">Resultado Final</span>
+                    <div class="display-4 fw-black mb-0">${match.resultado}</div>
+                </div>
+                <div class="row g-3">
                     <div class="col-md-6">
-                        <div class="p-4 player-card-bg rounded-4 h-100 shadow-sm">
-                            <h5 class="text-navy fw-extrabold mb-4 border-bottom border-primary border-opacity-10 pb-2">EQUIPO 1</h5>
-                            <ul class="player-list">
-                                ${match.equipoA.jugadores.map((p, i) => `
-                                    <li class="player-item">
-                                        <span class="player-number text-accent-blue fw-bold">${i + 1}</span>
-                                        <span class="fw-semibold">${p}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
+                        <div class="player-card-container">
+                            <div class="team-header-pill team-1">EQUIPO 1</div>
+                            <div class="p-4 player-card-bg rounded-4 h-100 shadow-sm">
+                                <ul class="player-list mt-2">
+                                    ${match.equipoA.jugadores.map((p, i) => `
+                                        <li class="player-item">
+                                            <div class="player-dot"></div>
+                                            <span class="fw-semibold">${p}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="p-4 player-card-bg rounded-4 h-100 shadow-sm">
-                            <h5 class="text-navy fw-extrabold mb-4 border-bottom border-primary border-opacity-10 pb-2">EQUIPO 2</h5>
-                            <ul class="player-list">
-                                ${match.equipoB.jugadores.map((p, i) => `
-                                    <li class="player-item">
-                                        <span class="player-number text-accent-blue fw-bold">${i + 1}</span>
-                                        <span class="fw-semibold">${p}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
+                        <div class="player-card-container">
+                            <div class="team-header-pill team-2">EQUIPO 2</div>
+                            <div class="p-4 player-card-bg rounded-4 h-100 shadow-sm">
+                                <ul class="player-list mt-2">
+                                    ${match.equipoB.jugadores.map((p, i) => `
+                                        <li class="player-item">
+                                            <div class="player-dot"></div>
+                                            <span class="fw-semibold">${p}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                ${match.sets ? `
-                    <div class="sets-container mt-4 p-4 rounded-4 shadow-lg">
-                        <h6 class="text-white fw-bold text-center mb-4 opacity-75">SCOREBOARD OFICIAL</h6>
-                        <div class="d-flex justify-content-center gap-4">
-                            ${match.sets.map((score, i) => `
-                                <div class="set-score text-center">
-                                    <small class="d-block text-white text-opacity-50 mb-1">SET ${i + 1}</small>
-                                    <span class="score-text fw-bold">${score}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                ` : ''}
             `;
         } else {
             const allPlayers = [...match.equipoA.jugadores, ...match.equipoB.jugadores];
