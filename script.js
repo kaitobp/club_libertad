@@ -70,32 +70,59 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     renderMatches();
     renderBirthdays();
+    renderBirthdays();
     initHeroVideo();
+    initVideoHover();
 });
 
 // Force Video Playback for Mobile/Windows
 function initHeroVideo() {
     const video = document.getElementById('heroVideo');
     if (video) {
-        // Double ensure it's muted (some browsers require this via JS)
         video.muted = true;
-
-        // Attempt to play
         const playPromise = video.play();
-
         if (playPromise !== undefined) {
             playPromise.then(_ => {
-                // Autoplay started!
                 console.log("Video playing automatically");
             }).catch(error => {
-                // Autoplay was prevented
-                console.log("Autoplay prevented, waiting for interaction");
-                // We can add a one-time listener to the body to play on first touch/click
+                console.log("Autoplay prevented");
                 document.body.addEventListener('click', () => {
                     video.play();
                 }, { once: true });
             });
         }
+    }
+}
+
+// Hover Effect for Jersey Video
+function initVideoHover() {
+    const container = document.querySelector('.jersey-hover-container');
+    const video = document.getElementById('hoverVideo');
+    const badge = container ? container.querySelector('.jersey-badge') : null;
+
+    if (container && video) {
+        container.addEventListener('mouseenter', () => {
+            video.play();
+            if (badge) badge.textContent = "Reproduciendo...";
+        });
+
+        container.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+            video.load(); // Reloads to show the poster image
+            if (badge) badge.textContent = "Nueva Camiseta";
+        });
+
+        // Mobile tap support
+        container.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                if (badge) badge.textContent = "Reproduciendo...";
+            } else {
+                video.pause();
+                if (badge) badge.textContent = "Nueva Camiseta";
+            }
+        });
     }
 }
 
